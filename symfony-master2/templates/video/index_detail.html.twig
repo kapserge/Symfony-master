@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+{% block title %}Detail Video {% endblock %}
+
+{% block body %}
+
+
+    <section class="tiles">
+
+  
+  
+              
+ 
+
+                <article class="style6" id="{{ video.nomlink }}">
+                  <a href="{{ path('video_detail', {'id': video.id}) }}"><h1>{{ video.nomlink }}</h1></a>
+                  
+               <span class="image">
+                     <iframe class="block" width="450" height="260"  src="{{ video.link | replace({'watch?v=': 'embed/'}) }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> </a>
+                  </span>
+              <p>{{ video.nomlink }}</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dapibus rutrum facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam tristique libero eu nibh porttitor fermentum. Nullam venenatis erat id vehicula viverra. Nunc ultrices eros ut ultricies condimentum. Mauris risus lacus, blandit sit amet venenatis non, bibendum vitae dolor. Nunc lorem mauris, fringilla in aliquam at, euismod in lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In non lorem sit amet elit placerat maximus. Pellentesque aliquam maximus risus, vel venenatis mauris vehicula hendrerit.</p>
+              <p>Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fersapien risus, commodo eget turpis at, elementum convallis elit. Pellentesque enim turpis, hendrerit tristique lorem ipsum dolor.</p>
+            </div>
+                </article>
+                 
+  </section>
+ <br>
+  
+    {% endblock %}

@@ -1,28 +1,30 @@
 security:
-    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
-    encoders:
-        App\Entity\User: bcrypt
+  encoders:
+    App\Entity\User: bcrypt
+  providers:
+    our_db_provider:
+      entity:
+        class: App\Entity\User
+        property: email
 
-    providers:
-        our_db_provider:
-            entity:
-                class: App\Entity\User
-                property: email
-    firewalls:
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
-        main:
-            anonymous: ~
-            provider: our_db_provider
-            form_login:
-                login_path: login
-                check_path: login
-                username_parameter: "login_user[email]"
-                password_parameter: "login_user[password]"
-            logout:
-                path: /logout
-                target: /
+  firewalls:
+    dev:
+        pattern: ^/(_(profiler|wdt)|css|images|js)/
+        security: false
+    main:
+        anonymous: ~
+        provider: our_db_provider
+        form_login:
+            login_path: login
+            check_path: login
+            username_parameter: "login_user[email]"
+            password_parameter: "login_user[password]"
+            default_target_path: "video"
+
+        logout:
+            path: /logout
+            target: /
+
             # activate different ways to authenticate
 
             # http_basic: true
@@ -33,6 +35,6 @@ security:
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
-    access_control:
-        - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/profile, roles: ROLE_USER }
+  access_control:
+         - { path: ^/admin, roles: ROLE_ADMIN }
+         - { path: ^/profile, roles: ROLE_USER }

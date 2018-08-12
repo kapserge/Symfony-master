@@ -1,10 +1,56 @@
 {% extends 'base.html.twig' %}
+{# beware that the blocks in your template may be named different #}
+{% block head_css %}
+    <!-- Copy CSS from https://getbootstrap.com/docs/4.0/getting-started/introduction/#css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+{% endblock %}
+{% block head_js %}
+    <!-- Copy JavaScript from https://getbootstrap.com/docs/4.0/getting-started/introduction/#js -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+
+{% endblock %}
+
+
+{% block title %}Hello {{ controller_name }}!{% endblock %}
+
 {% block body %}
-{% for user in users %}
-   <h1>{{ user.firstname }}</h1>
-   {% for article in user.articles %}
-       <p>{{ article.title }}</p>
-       <a href="{{ path( 'article_remove', {'id': article.id}) }} ">
-   {% endfor %}
-{% endfor %}
+
+
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <h1>
+            Hello  {{ app.user.firstname }} </h1>
+    {% else %}
+
+        <h1>
+            Welcome Anonymous</h1>
+    {% endif %}
+
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <a href="/logout">
+            logout
+        </a>
+    {% else %}
+
+        <a href="/login">
+            log
+        </a>
+    {% endif %}
+
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Hello {{ controller_name }}! ✅</h1>
+
+    This friendly message is coming from:
+    {% for user in users %}
+        <a href="{{ path('user_firstname', {'byFirstname':user.firstname})}}">
+            {{ user.firstname }}
+        </a>
+    {% endfor %}
+</div>
 {% endblock %}

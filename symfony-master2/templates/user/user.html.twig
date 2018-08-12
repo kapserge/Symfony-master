@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Compte User{% endblock %}
+
+{% block body %}
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+
+
+    {% for video in user.videos %}
+
+        <a href="{{ path('video_detail', {'id': video.id}) }}"><h1>{{ video.NomLink }}</h1></a>
+<a href="{{ path('video_detail', {'id': video.id}) }}"><iframe class="block" width="360" height="160"  src="{{ video.link | replace({'watch?v=': 'embed/'}) }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></a>
+       
+<a href="
+{{ path('video_remove', {'id': video.id}) }}
+">suprimer </a>
+
+    {% endfor %}
+{% endblock %}

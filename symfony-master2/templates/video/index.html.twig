@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+{% block title %}Hello {% endblock %}
+
+{% block body %}
+
+
+
+<section class="tiles">
+  {% for videos in video %}
+              
+ 
+
+                <article class="style6" id="{{ videos.nomlink }}">
+                  <span class="image">
+                     <iframe class="block" width="450" height="260"  src="{{ videos.link | replace({'watch?v=': 'embed/'}) }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                  </span>
+                  <a href="{{ path('video_detail', {'id': videos.id}) }}">
+                    <h2>{{ videos.nomlink }}</h2>
+                    <div class="content">
+                     <p>{{ videos.nomlink }}</p>
+                    </div>
+                  </a>
+                </article>
+                 {% endfor %}
+  </section>
+ <br>
+  
+    {% endblock %}

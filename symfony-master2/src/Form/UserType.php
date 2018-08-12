@@ -4,23 +4,22 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class UserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-           // ->add('name')
-            //->add('active')
-            ->add('createdAt')
-            //->add('Age')
             ->add('firstname')
             ->add('lastname')
             ->add('email')
-            ->add('submit', SubmitType::class)
+            ->add('birthday', BirthdayType::class)
+            ->add('submit',SubmitType::class)
         ;
     }
 
