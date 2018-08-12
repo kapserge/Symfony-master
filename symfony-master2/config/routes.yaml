@@ -1,0 +1,3 @@
+index:
+   path: /Game
+   controller: App\Controller\GameController::index
